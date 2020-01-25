@@ -24,13 +24,15 @@ routes.get('/dre', DREController.index);
 
 routes.get('/totals/ym/:year/:month', TotalsController.byYearMonth);
 
-routes.get('/categories', CategoryController.fillable);
+routes.get('/categories/f/:boolean', CategoryController.byFillable);
+routes.get('/categories/n/:name', CategoryController.byName);
 
-routes.post('/operations', OperationController.store);
 routes.get('/operations/c/:category', OperationController.byCategory);
 routes.get('/operations/m/:month', OperationController.byMonth);
 routes.get('/operations/ym/:year/:month', OperationController.byYearMonth);
 routes.get('/operations/d/:start/:end', OperationController.byDates);
+routes.post('/operations', OperationController.store);
+routes.delete('/operation/:_id', OperationController.destroy);
 
 routes.get('/assets', AssetController.index);
 routes.post('/assets', AssetController.store);

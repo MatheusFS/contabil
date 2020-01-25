@@ -21,9 +21,9 @@ function CO({ totals, operations, pb }){
         pb={pb}
         childs={
         <>
-            <CO_CMV totals={totals} operations={operations}/>
-            <CO_CPV totals={totals} operations={operations}/>
-            <CO_CSP totals={totals} operations={operations}/>
+            <CO_CMV totals={totals} operations={operations} pb={pb}/>
+            <CO_CPV totals={totals} operations={operations} pb={pb}/>
+            <CO_CSP totals={totals} operations={operations} pb={pb}/>
         </>
         }
     />

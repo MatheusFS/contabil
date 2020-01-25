@@ -31,11 +31,23 @@ module.exports = {
         return res.json(category);
     },
 
-    async fillable(req, res){
+    async byFillable(req, res){
+
+        const { boolean } = req.params;
 
         const categories = await Category.find({
-            fillable: true
+            fillable: boolean
         });
+
+        return res.json(categories);
+    },
+
+    async byName(req, res){
+
+        const { name } = req.params;
+
+        const categories = await Category.find({name});
+        
         return res.json(categories);
     }
 }

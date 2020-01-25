@@ -11,6 +11,7 @@ function DROB_DDSV({ totals, operations, pb }){
     return (
         <CategoryItem
             color="#990000"
+            name={name}
             title="Devoluções e Descontos Sobre Vendas"
             total={totals[name]}
             operations={operations}
