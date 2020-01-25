@@ -29,6 +29,15 @@ module.exports = {
         return res.json(operation);
     },
 
+    async destroy(req, res){
+
+        const { _id } = req.params;
+
+        const response = await Operation.deleteOne({ _id });
+
+        return res.json(response);
+    },
+
     async byCategory(req, res){
 
         const { category } = req.params;
