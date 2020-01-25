@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import api from './services/api';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
+import './materialize-custom.css';
 import './App.css';
 
 import DRE from './components/DRE';
 import RLE from './components/DRE/RLE';
-import YearMonthSelector from './components/YearMonthSelector';
-import NewOperationForm from './components/NewOperationForm';
+import DateNavbar from './components/DateNavbar';
+import OperationForm from './components/OperationForm';
 
 function App() {
 
@@ -34,10 +36,10 @@ function App() {
     getTotalsByYearMonth();
   }, [year, month]);
 
-  return (
+  return (      
     <div id="app">
       <header>
-        <YearMonthSelector 
+        <DateNavbar 
           year={year} 
           month={month} 
           cYear={setYear} 
@@ -47,8 +49,8 @@ function App() {
       </header>
       <main>
         <DRE operations={operations} totals={totals}/>
-        <NewOperationForm year={year} month={month}/>
       </main>
+      <OperationForm year={year} month={month}/>
     </div>
   );
 }

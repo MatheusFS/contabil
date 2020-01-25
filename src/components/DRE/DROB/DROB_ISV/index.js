@@ -11,6 +11,7 @@ function DROB_ISV({ totals, operations, pb }){
     return (
         <CategoryItem
             color="#990000"
+            name={name}
             title="Impostos Sobre Vendas"
             total={totals[name]}
             operations={operations}

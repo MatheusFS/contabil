@@ -1,8 +1,8 @@
 import React from 'react';
 
 import CategoryItem from '../../CategoryItem';
-
-// import './styles.css';
+import DO_DA_DGA from "./DO_DA_DGA";
+import DO_DA_PES from "./DO_DA_PES";
 
 function DO_DA({ totals, operations, pb }){
 
@@ -16,6 +16,12 @@ function DO_DA({ totals, operations, pb }){
         total={totals[name]}
         operations={operations}
         pb={pb}
+        childs={
+        <>
+            <DO_DA_DGA totals={totals} operations={operations} pb={pb}/>
+            <DO_DA_PES totals={totals} operations={operations} pb={pb}/>
+        </>
+        }
     />
     )
 }

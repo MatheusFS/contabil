@@ -1,3 +1,10 @@
+html, body{
+    margin: 0;
+	padding: 0;
+    border: 0;
+    line-height: 1;
+}
+
 header{
     top: 0;
     position: fixed;
@@ -15,5 +22,5 @@ ul{
     padding: 0;
     margin: 0;
     list-style: none;
-    line-height: 3rem;
+    line-height: 2.5rem;
 }

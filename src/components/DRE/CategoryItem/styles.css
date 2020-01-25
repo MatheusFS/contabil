@@ -7,32 +7,21 @@ strong{
     font-weight: bold;
     text-transform: uppercase;
 }
-  
-/* Style the caret/arrow */
-.caret {
-cursor: pointer;
-user-select: none; /* Prevent text selection */
+
+#DRE li:hover{
+    background-color: #BBB;
+}
+#DRE li:hover ul{
+    background-color: #DDD;
 }
   
-/* Create the caret/arrow with a unicode, and style it */
+#DRE li {cursor: pointer;user-select: none}
 .caret::before {
-content: "\25B6";
-color: black;
-display: inline-block;
-margin-right: 6px;
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
 }
-  
-/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
-.caret-down::before {
-transform: rotate(90deg);
-}
-  
-/* Hide the nested list */
-.nested {
-display: none;
-}
-  
-/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
-.active {
-display: block;
-}
+.caret-down::before {transform: rotate(90deg)}
+.nested {display: none}
+.active {display: block}

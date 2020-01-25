@@ -4,9 +4,9 @@ import CategoryItem from '../../../CategoryItem';
 
 // import './styles.css';
 
-function CO_CPV_MO({ totals, operations, pb }){
+function CO_CSP_MO({ totals, operations, pb }){
 
-    const name = "CO_CPV_MO";
+    const name = "CO_CSP_MO";
 
     return (
     <CategoryItem
@@ -20,4 +20,4 @@ function CO_CPV_MO({ totals, operations, pb }){
     )
 }
 
-export default CO_CPV_MO;
+export default CO_CSP_MO;

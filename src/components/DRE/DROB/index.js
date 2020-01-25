@@ -13,6 +13,7 @@ function DROB({ totals, operations, pb }){
     return (
     <CategoryItem
         color="#660000"
+        name={name}
         title="Deduções das Receitas Operacionais Brutas"
         total={totals[name]}
         operations={operations}

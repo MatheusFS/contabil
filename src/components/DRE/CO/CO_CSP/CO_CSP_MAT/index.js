@@ -4,9 +4,9 @@ import CategoryItem from '../../../CategoryItem';
 
 // import './styles.css';
 
-function CO_CPV_MAT({ totals, operations, pb }){
+function CO_CSP_MAT({ totals, operations, pb }){
 
-    const name = "CO_CPV_MAT";
+    const name = "CO_CSP_MAT";
 
     return (
     <CategoryItem
@@ -20,4 +20,4 @@ function CO_CPV_MAT({ totals, operations, pb }){
     )
 }
 
-export default CO_CPV_MAT;
+export default CO_CSP_MAT;
