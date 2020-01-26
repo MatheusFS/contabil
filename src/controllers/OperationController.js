@@ -1,8 +1,9 @@
 const Operation = require('../models/Operation');
 const getOperationsByCategory = require('./utils/getOperationsByCategory');
 const getOperationsByMonth = require('./utils/getOperationsByMonth');
-const getOperationsByYearMonth = require('./utils/getOperationsByYearMonth');
 const getOperationsByDates = require('./utils/getOperationsByDates');
+const getOperationsByYearMonth = require('./utils/getOperationsByYearMonth');
+const getAssetsDepreciationByYearMonth = require('./utils/getAssetsDepreciationByYearMonth');
 
 // CONTROLLER FUNCTIONS
 // index, show, store, update, destroy
@@ -61,6 +62,13 @@ module.exports = {
         const { year, month } = req.params;
 
         const operations = await getOperationsByYearMonth(year, month);
+
+        const depreciations = await getAssetsDepreciationByYearMonth(year, month);
+
+        if(depreciations){
+
+            operations.push(...depreciations);
+        }
 
         return res.json(operations);
     },
