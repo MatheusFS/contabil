@@ -15,7 +15,8 @@ strong{
     background-color: #DDD;
 }
   
-#DRE li {cursor: pointer;user-select: none}
+#DRE li {cursor: pointer}
+li.user-none {user-select: none}
 .caret::before {
     content: "\25B6";
     color: black;

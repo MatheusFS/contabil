@@ -17,7 +17,7 @@ import AED from './AED';
 
 import './styles.css';
 
-function DRE({ operations, totals }){
+function DRE({ operations, totals,  refresh}){
 
     const percentageBase = totals["ROB"];
 
