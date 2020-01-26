@@ -17,7 +17,7 @@ function CategoryItem({
     total,
     operations,
     pb,
-    childs
+    childs,
 }){
 
     const [isFillable, setIsFillable] = useState(false);
@@ -46,6 +46,7 @@ function CategoryItem({
 
     function toggle(e, name){
 
+        if(e.target.tagName == 'BUTTON') return;
         e.stopPropagation();
         if(name){
             document.querySelector(`#${name} .nested`).classList.toggle("active");
@@ -56,7 +57,7 @@ function CategoryItem({
     async function destroyOperation(id){
 
         const response = await api.delete(`/operation/${id}`);
-        console.log(response.data);
+        return setRefresh(true);
     }
 
     const addIn = (name) => {
@@ -66,8 +67,12 @@ function CategoryItem({
     }
 
     return (  
-    <li id={name} style={{ backgroundColor, color }} onClick={e => toggle(e, ops.length||childs?name:false)}>
-    <Row>
+    <li 
+        id={name} 
+        style={{ backgroundColor, color }} 
+        className="user-none"
+    >
+    <Row onClick={e => toggle(e, ops.length||childs?name:false)}>
         <Col s={1}>
             {ops.length||childs
             ? <span className="caret"></span>

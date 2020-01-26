@@ -14,7 +14,7 @@ import MaterializeModal from '../MaterializeModal';
 import { datePickerOptions, selectOptions } from './options';
 import './styles.css';
 
-function OperationForm({ year, month }){
+function OperationForm({ year, month, refresh }){
 
     const now = new Date(Date.now());
 
@@ -42,6 +42,8 @@ function OperationForm({ year, month }){
             value,
             date
         });
+
+        refresh();
     }
 
     const fields = [
@@ -68,7 +70,7 @@ function OperationForm({ year, month }){
         trigger={<Button
             className="blue"
             floating
-            icon={<Icon>add</Icon>}
+            icon={<Icon>playlist_add</Icon>}
             large
             node="button"
             waves="light"
