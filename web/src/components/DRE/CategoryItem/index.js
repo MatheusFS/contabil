@@ -28,9 +28,12 @@ function CategoryItem({
             
             if(name){
 
-                const response = await api.get('/categories/n/'+name)
-                const { fillable } = response.data[0];
-                setIsFillable(fillable);
+                const response = await api.get('/categories/n/'+name);
+                if(response.data[0]){
+
+                    const { fillable } = response.data[0];
+                    setIsFillable(fillable);
+                }
             }
         }
 

@@ -1,20 +1,18 @@
-const Operation = require('../../models/Operation');
+const getOperationsByYearMonth = require('./getOperationsByYearMonth');
+const getAssetsDepreciationByYearMonth = require('./getAssetsDepreciationByYearMonth');
 
-module.exports = async function getOperationsByYearMonth(year, month){
+module.exports = async function getTotalsByYearMonth(year, month){
 
-    function sub(a, b){
+    const sub = (a, b) => (a?a:0) - (b?b:0);
 
-        return (a?a:0) - (b?b:0);
+    const operations = await getOperationsByYearMonth(year, month);
+
+    const depreciations = await getAssetsDepreciationByYearMonth(year, month);
+
+    if(depreciations){
+
+        operations.push(...depreciations);
     }
-
-    const padMonth = `000${month}`.slice(-2);
-
-    const operations = await Operation.find({
-        date: {
-            $gte: new Date(`${year}-${padMonth}-01`),
-            $lte: new Date(`${year}-${padMonth}-31`),
-        }
-    });
 
     const totals = {};
 
@@ -33,7 +31,8 @@ module.exports = async function getOperationsByYearMonth(year, month){
 
     totals['ROL'] = sub(totals['ROB'], totals['DROB']);
     totals['LOB'] = sub(totals['ROL'], totals['CO']);
-    totals['LAJIR'] = sub(totals['LOB'], totals['DO']);
+    totals['LAJIRDA'] = sub(totals['LOB'], totals['DO']);
+    totals['LAJIR'] = sub(totals['LAJIRDA'], totals['DA']);
     totals['LAIR'] = sub(totals['LAJIR'], totals['RFL']);
     totals['LOL'] = sub(totals['LAIR'], totals['CJS']);
     totals['RLE'] = sub(sub(totals['LOL'], totals['RNO']), totals['AED']);
