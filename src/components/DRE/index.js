@@ -4,6 +4,8 @@ import DROB from './DROB';
 import ROL from './ROL';
 import CO from './CO';
 import LOB from './LOB';
+import DA from './DA';
+import LAJIRDA from './LAJIRDA';
 import DO from './DO';
 import LAJIR from './LAJIR';
 import RFL from './RFL';
@@ -27,6 +29,8 @@ function DRE({ operations, totals }){
         <CO totals={totals} operations={operations} pb={percentageBase}/>
         <LOB totals={totals} pb={percentageBase}/>
         <DO totals={totals} operations={operations} pb={percentageBase}/>
+        <LAJIRDA totals={totals} pb={percentageBase}/>
+        <DA totals={totals} operations={operations} pb={percentageBase}/>
         <LAJIR totals={totals} pb={percentageBase}/>
         <RFL totals={totals} operations={operations} pb={percentageBase}/>
         <LAIR totals={totals} pb={percentageBase}/>
