@@ -1,5 +1,6 @@
-// const axios = require('axios');
 const Asset = require('../models/Asset');
+const filterCashFlow = require('./utils/filterCashFlow');
+const to = require('../utils/to');
 
 // CONTROLLER FUNCTIONS
 // index, show, store, update, destroy
@@ -14,18 +15,21 @@ module.exports = {
 
     async store(req, res){
 
-        const { name, value, start_date, lifetime_in_months }  = req.body;
-  
-        // const response = await axios.get(`https://api.github.com/users/${github_username}`);
-        // const { name = login, avatar_url, bio } = response.data;
-    
-        asset = await Asset.create({
+        const { name, type, price, quantity, purchase_date, cash_flow, use_start_date, lifetime_in_months }  = req.body;
+
+        const filtered_cash_flow = filterCashFlow(cash_flow);
+
+        const [error, asset] = await to(Asset.create({
             name,
-            value,
-            start_date,
+            type,
+            price,
+            quantity,
+            purchase_date,
+            cash_flow: filtered_cash_flow,
+            use_start_date,
             lifetime_in_months,
-        });
-    
-        return res.json(asset);
+        }));
+
+        return res.json({ error, asset });
     }
 }

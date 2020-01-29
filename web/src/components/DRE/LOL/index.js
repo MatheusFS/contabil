@@ -13,7 +13,7 @@ function LOL({ totals, pb }){
         <CategoryItem
             color="#fff"
             backgroundColor="#1c4587"
-            title="Lucro Operacional Líquida"
+            title="Lucro Operacional Líquido"
             total={totals[name]}
             pb={pb}
         />

@@ -9,7 +9,7 @@ module.exports = async function getOperationsByMonth(month){
     };
 
     const operations = await Operation.find({
-        date: {
+        competence_date: {
             $gte: new Date(dates.start),
             $lte: new Date(dates.end),
         }

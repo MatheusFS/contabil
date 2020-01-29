@@ -3,6 +3,7 @@ import api from './services/api';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
+import './polid.css';
 import './materialize-custom.css';
 import './App.css';
 
@@ -22,17 +23,17 @@ function App() {
   const [totals, setTotals] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
-  async function getOperationsByYearMonth(){
-
-    const response = await api.get(`operations/ym/${year}/${month}`);
-    setOperations(response.data);
-  }
-  async function getTotalsByYearMonth(){
-
-    const response = await api.get(`totals/ym/${year}/${month}`);
-    setTotals(response.data);
-  }
   useEffect(() => {
+    async function getOperationsByYearMonth(){
+  
+      const response = await api.get(`operations/ym/${year}/${month}`);
+      setOperations(response.data);
+    }
+    async function getTotalsByYearMonth(){
+  
+      const response = await api.get(`totals/ym/${year}/${month}`);
+      setTotals(response.data);
+    }
     getOperationsByYearMonth();
     getTotalsByYearMonth();
     setRefresh(false);
@@ -46,6 +47,7 @@ function App() {
           month={month} 
           cYear={setYear} 
           cMonth={setMonth}
+          refresh={() => setRefresh(true)}
         />
         <ul><RLE totals={totals} pb={totals["ROB"]}/></ul>
       </header>

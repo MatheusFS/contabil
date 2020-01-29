@@ -1,0 +1,5 @@
+.datePicker{
+    display: grid;
+    grid-template-columns: 45px auto;
+    align-items: center;
+}

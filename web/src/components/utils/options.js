@@ -1,11 +1,11 @@
-exports.datePickerOptions = {
+export const datePickerOptions = {
     autoClose: false,
     container: null,
     disableDayFn: null,
     disableWeekends: false,
     events: [],
     firstDay: 0,
-    format: 'ddd, dd mmm yy',
+    format: 'dd mmmm yyyy (ddd)',
     i18n: {
     cancel: 'Cancelar',
     clear: 'Limpar',
@@ -16,13 +16,13 @@ exports.datePickerOptions = {
         'Março',
         'Abril',
         'Maio',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
+        'Junho',
+        'Julho',
+        'Agosto',
+        'Setembro',
+        'Outubro',
+        'Novembro',
+        'Dezembro'
     ],
     monthsShort: [
         'Jan',
@@ -82,7 +82,7 @@ exports.datePickerOptions = {
     yearRange: 10
 };
 
-exports.selectOptions = {
+export const selectOptions = {
     classes: 'select',
     dropdownOptions: {
         alignment: 'left',

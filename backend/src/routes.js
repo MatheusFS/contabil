@@ -1,10 +1,8 @@
 const { Router } = require('express');
 
-const DREController = require('./controllers/DREController');
-const TotalsController = require('./controllers/TotalsController');
-const CategoryController = require('./controllers/CategoryController');
-const OperationController = require('./controllers/OperationController');
 const AssetController = require('./controllers/AssetController');
+const OperationController = require('./controllers/OperationController');
+const TotalsController = require('./controllers/TotalsController');
  
 const routes = Router();
 
@@ -17,15 +15,7 @@ const routes = Router();
 
 // MongoDB (Não-relacional)
 
-// routes.get('/categories', CategoryController.index);
-// routes.post('/categories', CategoryController.store);
-
-routes.get('/dre', DREController.index);
-
 routes.get('/totals/ym/:year/:month', TotalsController.byYearMonth);
-
-routes.get('/categories/f/:boolean', CategoryController.byFillable);
-routes.get('/categories/n/:name', CategoryController.byName);
 
 routes.get('/operations/c/:category', OperationController.byCategory);
 routes.get('/operations/m/:month', OperationController.byMonth);
