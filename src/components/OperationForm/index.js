@@ -11,28 +11,21 @@ import {
 
 import MaterializeModal from '../MaterializeModal';
 
-import { datePickerOptions, selectOptions } from './options';
+import { datePickerOptions, selectOptions } from '../utils/options';
 import './styles.css';
 
 function OperationForm({ year, month, refresh }){
 
     const now = new Date(Date.now());
 
-    async function getFillableCategories(){
-
-        const { data } = await api.get('categories/f/true');
-        setCategories(data);
-    }
-
-    useEffect(() => {
-        getFillableCategories();
-    },[]);
-
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
     const [value, setValue] = useState(0.0);
-    const [date, setDate] = useState(now);
+    const [competence_date, setCompetenceDate] = useState(now);
+    const [cash_flow_date, setCashFlowDate] = useState(now);
     const [categories, setCategories] = useState([]);
+
+    useEffect(() => setCompetenceDate(new Date(year, month-1)), [year, month]);
 
     const handleAddOperation = async () => {
 
@@ -40,7 +33,8 @@ function OperationForm({ year, month, refresh }){
             name,
             category,
             value,
-            date
+            competence_date,
+            cash_flow_date
         });
 
         refresh();
@@ -48,27 +42,25 @@ function OperationForm({ year, month, refresh }){
 
     const fields = [
         {
-            name: 'operation-name',
-            icon: 'edit',
+            icon: 'local_offer',
             placeholder: 'Nome da operação', 
             value: name, 
             onChange: e => setName(e.target.value)
         },
         {
-            name: 'operation-value',
-            icon: 'edit',
+            icon: 'attach_money',
             placeholder: 'Valor (R$)', 
             value: value, 
             onChange: e => setValue(e.target.value)
         },
     ];
 
-    datePickerOptions.defaultDate = date;
+    datePickerOptions.defaultDate = now;
 
     return (
     <MaterializeModal
         trigger={<Button
-            className="blue"
+            className="green"
             floating
             icon={<Icon>playlist_add</Icon>}
             large
@@ -77,32 +69,47 @@ function OperationForm({ year, month, refresh }){
         />}
         title="Adicionar operação"
         body={
-            <form action="">
-                <DatePicker options={datePickerOptions} onChange={e => setDate(e)}/>
+            <>
                 <Select
-                    id="operation-category"
+                    icon={<Icon>label</Icon>}
+                    value={category}
                     onChange={e => setCategory(e.target.value)}
                     options={selectOptions}
-                    value={category}
                 >
                     <option disabled value="">Selecione...</option>
                     {categories.map(category => (
-                    <option key={category._id} value={category.name}>
+                    <option
+                        key={category._id}
+                        value={category.name}
+                        style={{ color: category.color }}
+                        color={category.color}       
+                    >
                         {category.title}
                     </option>
                     ))}
                 </Select>
+                <DatePicker 
+                    icon={<Icon>event</Icon>}
+                    label="Data de competência"
+                    onChange={e => setCompetenceDate(e)}
+                    options={datePickerOptions}
+                />
+                <DatePicker 
+                    icon={<Icon>event_available</Icon>}
+                    label="Data de caixa"
+                    onChange={e => setCashFlowDate(e)}
+                    options={datePickerOptions}
+                />
                 {fields.map((field, i) => (
                 <TextInput
                     key={i}
                     icon={field.icon}
                     label={field.placeholder}
-                    placeholder={field.placeholder}
-                    value={field.value}
+                    value={field.value.toString()}
                     onChange={field.onChange}
                 />
                 ))}
-            </form>
+            </>
         }
         action={handleAddOperation}
     />

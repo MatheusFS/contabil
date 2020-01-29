@@ -1,7 +1,9 @@
 div.selectors{
     display: grid;
-    padding: 0.5rem 5rem;
-    grid-template-columns: 33% 34% 33%;
+    padding: 0.5rem 1rem;
+    column-gap: 2rem;
+    width: calc(100vw - 1rem);
+    grid-template-columns: 60px 33% auto 33% 60px;
     align-items: center;
 }
 

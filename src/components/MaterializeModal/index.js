@@ -5,7 +5,7 @@ import 'material-design-icons/iconfont/material-icons.css';
 
 import './styles.css';
 
-function MaterializeModal({ trigger, title, body, action }){
+function MaterializeModal({ id, trigger, title, body, action }){
 
     return (
     <div>
@@ -22,7 +22,6 @@ function MaterializeModal({ trigger, title, body, action }){
             </Button>
             <Button
                 className="blue"
-                modal="close"
                 node="button"
                 waves="light"
                 onClick={action}
@@ -34,19 +33,15 @@ function MaterializeModal({ trigger, title, body, action }){
             bottomSheet={false}
             fixedFooter={true}
             header={title}
-            id="modal-new-operation"
+            id={id}
             options={{
+                opacity: 0.5,
                 dismissible: true,
+                startingTop: '4%',
                 endingTop: '10%',
                 inDuration: 250,
-                onCloseEnd: null,
-                onCloseStart: null,
-                onOpenEnd: null,
-                onOpenStart: null,
-                opacity: 0.5,
                 outDuration: 250,
-                preventScrolling: true,
-                startingTop: '4%'
+                preventScrolling: false,
             }}
             trigger={trigger}
             >

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Button } from "react-materialize";
 
-import floatToReal from "../../../utils/floatToReal";
+import maskReal from "../../../utils/maskReal";
 import floatToPercentage from "../../../utils/floatToPercentage";
 
 import './styles.css';
@@ -18,27 +18,8 @@ function CategoryItem({
     operations,
     pb,
     childs,
+    isFillable
 }){
-
-    const [isFillable, setIsFillable] = useState(false);
-
-    useEffect(()=>{
-
-        async function compareFillable(name){
-            
-            if(name){
-
-                const response = await api.get('/categories/n/'+name);
-                if(response.data[0]){
-
-                    const { fillable } = response.data[0];
-                    setIsFillable(fillable);
-                }
-            }
-        }
-
-        compareFillable(name);
-    }, []);
 
     const ops = operations
     ? operations.filter(operation => operation.category === name)
@@ -46,7 +27,7 @@ function CategoryItem({
 
     function toggle(e, name){
 
-        if(e.target.tagName == 'BUTTON') return;
+        if(e.target.tagName === 'BUTTON') return;
         e.stopPropagation();
         if(name){
             document.querySelector(`#${name} .nested`).classList.toggle("active");
@@ -56,8 +37,8 @@ function CategoryItem({
 
     async function destroyOperation(id){
 
-        const response = await api.delete(`/operation/${id}`);
-        return setRefresh(true);
+        await api.delete(`/operation/${id}`);
+        return window.location.reload(false);
     }
 
     const addIn = (name) => {
@@ -79,7 +60,7 @@ function CategoryItem({
             : ''}
         </Col>
         <Col s={6}><strong>{title}</strong></Col>
-        <Col s={2}>{floatToReal(total)}</Col>
+        <Col s={2}>{maskReal(total)}</Col>
         <Col s={2}>{floatToPercentage(total / pb)}</Col>
         <Col s={1}>
             {isFillable ?
@@ -93,9 +74,9 @@ function CategoryItem({
             {ops.map(operation => (
                 <li key={operation._id} style={{ color: "#333", backgroundColor: '#FFF' }}>
                 <Row>
-                    <Col s={1}>{new Date(operation.date).toLocaleDateString('pt-BR')}</Col>
+                    <Col s={1}>{new Date(operation.competence_date).toLocaleDateString('pt-BR')}</Col>
                     <Col s={6}>{operation.name}</Col>
-                    <Col s={2}>{floatToReal(operation.value)}</Col>
+                    <Col s={2}>{maskReal(operation.value)}</Col>
                     <Col s={2}>{floatToPercentage(operation.value/pb)}</Col>
                     <Col s={1}>
                         <Button className="red" waves="light" onClick={e => destroyOperation(operation._id)}>
