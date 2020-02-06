@@ -1,10 +1,5 @@
 import React from 'react';
-
-import CategoryItem from '../CategoryItem';
-import CJS_IR from './CJS_IR';
-import CJS_CS from './CJS_CS';
-
-// import './styles.css';
+import CategoryItem from '../../CategoryItem';
 
 function CJS({ totals, operations, pb }){
 
@@ -20,8 +15,24 @@ function CJS({ totals, operations, pb }){
         pb={pb}
         childs={
         <>
-            <CJS_IR totals={totals} operations={operations}/>
-            <CJS_CS totals={totals} operations={operations}/>
+            <CategoryItem
+                color="#990000"
+                name='CJS_CS'
+                title="Contribuições Sociais"
+                total={totals['CJS_CS']}
+                operations={operations}
+                pb={pb}
+                fillable
+            />
+            <CategoryItem
+                color="#990000"
+                name='CJS_IR'
+                title="Impostos de Renda"
+                total={totals['CJS_IR']}
+                operations={operations}
+                pb={pb}
+                fillable
+            />
         </>}
     />
     )

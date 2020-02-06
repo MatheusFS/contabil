@@ -1,8 +1,5 @@
 import React from 'react';
-
-import CategoryItem from '../../../CategoryItem';
-
-// import './styles.css';
+import CategoryItem from '../../../../CategoryItem';
 
 function ROB_RBV_RSP({ totals, operations, pb }){
 

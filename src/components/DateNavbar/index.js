@@ -3,7 +3,7 @@ import { Select, Icon, Button } from "react-materialize";
 
 import './styles.css';
 
-function DateNavbar({ year, month, cYear, cMonth, refresh }){
+function DateNavbar({ year, month, cYear, cMonth }){
 
     function setDateAddingMonths(months){
 
@@ -12,7 +12,6 @@ function DateNavbar({ year, month, cYear, cMonth, refresh }){
         const final_date =  new Date(initial_date.setMonth(initial_month+months));
         cYear(final_date.getFullYear());
         cMonth(final_date.getMonth()+1);
-        refresh();
     }
 
     return (

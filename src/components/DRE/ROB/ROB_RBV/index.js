@@ -1,11 +1,5 @@
 import React from 'react';
-
-import CategoryItem from '../../CategoryItem';
-import ROB_RBV_RMV from './ROB_RBV_RMV';
-import ROB_RBV_RPI from './ROB_RBV_RPI';
-import ROB_RBV_RSP from './ROB_RBV_RSP';
-
-// import './styles.css';
+import CategoryItem from '../../../CategoryItem';
 
 function ROB_RBV({ totals, operations, pb }){
 
@@ -21,9 +15,30 @@ function ROB_RBV({ totals, operations, pb }){
         pb={pb}
         childs={
             <>
-            <ROB_RBV_RMV totals={totals} operations={operations} pb={pb}/>
-            <ROB_RBV_RPI totals={totals} operations={operations} pb={pb}/>
-            <ROB_RBV_RSP totals={totals} operations={operations} pb={pb}/>
+                <CategoryItem
+                    color="#6aa84f"
+                    name='ROB_RBV_RMV'
+                    title="Receitas das Mercadorias Vendidas"
+                    total={totals['ROB_RBV_RMV']}
+                    operations={operations}
+                    pb={pb}
+                    fillable
+                />
+                    <CategoryItem
+                    color="#6aa84f"
+                    name='ROB_RBV_RPI'
+                    title="Receitas dos Produtos Industrializados"
+                    total={totals['ROB_RBV_RPI']}
+                />
+                    <CategoryItem
+                    color="#6aa84f"
+                    name='ROB_RBV_RSP'
+                    title="Receitas dos Serviços Prestados"
+                    total={totals['ROB_RBV_RSP']}
+                    operations={operations}
+                    pb={pb}
+                    fillable
+                />
             </>
         }
     />

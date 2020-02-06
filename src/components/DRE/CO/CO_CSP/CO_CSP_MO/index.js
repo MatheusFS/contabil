@@ -1,8 +1,5 @@
 import React from 'react';
-
 import CategoryItem from '../../../CategoryItem';
-
-// import './styles.css';
 
 function CO_CSP_MO({ totals, operations, pb }){
 

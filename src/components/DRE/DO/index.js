@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryItem from '../CategoryItem';
+import CategoryItem from '../../CategoryItem';
 import DO_DC from './DO_DC';
 import DO_DA from './DO_DA';
 

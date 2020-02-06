@@ -1,8 +1,5 @@
 import React from 'react';
 
-import CategoryItem from '../../CategoryItem';
-
-// import './styles.css';
 
 function AED_DL({ totals, operations, pb }){
 

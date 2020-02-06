@@ -1,8 +1,5 @@
 import React from 'react';
-
-import CategoryItem from '../../CategoryItem';
-import DO_DA_DGA from "./DO_DA_DGA";
-import DO_DA_PES from "./DO_DA_PES";
+import CategoryItem from '../../../CategoryItem';
 
 function DO_DA({ totals, operations, pb }){
 
@@ -18,8 +15,22 @@ function DO_DA({ totals, operations, pb }){
         pb={pb}
         childs={
         <>
-            <DO_DA_DGA totals={totals} operations={operations} pb={pb}/>
-            <DO_DA_PES totals={totals} operations={operations} pb={pb}/>
+            <CategoryItem
+                color="#cc0000"
+                name='DO_DA_DGA'
+                title="Despesas Gerais Administrativas"
+                total={totals['DO_DA_DGA']}
+                operations={operations}
+                pb={pb}
+            />
+            <CategoryItem
+                color="#cc0000"
+                name='DO_DA_PES'
+                title="Pessoal"
+                total={totals['DO_DA_PES']}
+                operations={operations}
+                pb={pb}
+            />
         </>
         }
     />

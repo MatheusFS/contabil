@@ -1,11 +1,5 @@
 import React from 'react';
-
-import CategoryItem from '../../CategoryItem';
-import CO_CPV_MP from './CO_CPV_MP';
-import CO_CPV_MOD from './CO_CPV_MOD';
-import CO_CPV_CIF from './CO_CPV_CIF';
-
-// import './styles.css';
+import CategoryItem from '../../../CategoryItem';
 
 function CO_CPV({ totals, operations, pb }){
 
@@ -13,17 +7,38 @@ function CO_CPV({ totals, operations, pb }){
 
     return (
     <CategoryItem
-        color="#990000"
         name={name}
+        color="#990000"
         title="Custos dos Produtos Vendidos"
         total={totals[name]}
         operations={operations}
         pb={pb}
         childs={
         <>
-            <CO_CPV_MP totals={totals} operations={operations}/>
-            <CO_CPV_MOD totals={totals} operations={operations}/>
-            <CO_CPV_CIF totals={totals} operations={operations}/>
+            <CategoryItem
+                name='CO_CPV_MP'
+                color="#cc0000"
+                title="Matéria Prima"
+                total={totals['CO_CPV_MP']}
+                operations={operations}
+                pb={pb}
+            />
+            <CategoryItem
+                name='CO_CPV_MOD'
+                color="#cc0000"
+                title="Mão de Obra Direta"
+                total={totals['CO_CPV_MOD']}
+                operations={operations}
+                pb={pb}
+            />
+            <CategoryItem
+                name='CO_CPV_CIF'
+                color="#cc0000"
+                title="Custos Indiretos de Fabricação"
+                total={totals['CO_CPV_CIF']}
+                operations={operations}
+                pb={pb}
+            />
         </>
         }
     />

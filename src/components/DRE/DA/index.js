@@ -1,8 +1,5 @@
 import React from 'react';
-
-import CategoryItem from '../CategoryItem';
-import DA_D from './DA_D';
-import DA_A from './DA_A';
+import CategoryItem from '../../CategoryItem';
 
 function DA({ totals, operations, pb }){
 
@@ -10,16 +7,30 @@ function DA({ totals, operations, pb }){
 
     return (
     <CategoryItem
-        color="#660000"
         name={name}
+        color="#660000"
         title="Depreciações e Amortizações"
         total={totals[name]}
         operations={operations}
         pb={pb}
         childs={
         <>
-            <DA_D totals={totals} operations={operations}/>
-            <DA_A totals={totals} operations={operations}/>
+            <CategoryItem
+                name='DA_D'
+                color="#990000"
+                title="Depreciações"
+                total={totals['DA_D']}
+                operations={operations}
+                pb={pb}
+            />
+            <CategoryItem
+                color="#990000"
+                name='DA_A'
+                title="Amortizações"
+                total={totals['DA_A']}
+                operations={operations}
+                pb={pb}
+            />
         </>}
     />
     )

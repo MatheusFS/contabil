@@ -1,11 +1,5 @@
 import React from 'react';
-
-import CategoryItem from '../../CategoryItem';
-import CO_CSP_MAT from './CO_CSP_MAT';
-import CO_CSP_MO from './CO_CSP_MO';
-import CO_CSP_CIS from './CO_CSP_CIS';
-
-// import './styles.css';
+import CategoryItem from '../../../CategoryItem';
 
 function CO_CSP({ totals, operations, pb }){
 
@@ -21,9 +15,30 @@ function CO_CSP({ totals, operations, pb }){
         pb={pb}
         childs={
         <>
-            <CO_CSP_MAT totals={totals} operations={operations}/>
-            <CO_CSP_MO totals={totals} operations={operations}/>
-            <CO_CSP_CIS totals={totals} operations={operations}/>
+            <CategoryItem
+                name='CO_CSP_MAT'
+                color="#cc0000"
+                title="Materiais"
+                total={totals['CO_CSP_MAT']}
+                operations={operations}
+                pb={pb}
+            />
+            <CategoryItem
+                color="#cc0000"
+                name='CO_CSP_MO'
+                title="Mão de Obra"
+                total={totals['CO_CSP_MO']}
+                operations={operations}
+                pb={pb}
+            />
+            <CategoryItem
+                name='CO_CSP_CIS'
+                color="#cc0000"
+                title="Custos Indiretos de Serviço"
+                total={totals['CO_CSP_CIS']}
+                operations={operations}
+                pb={pb}
+            />
         </>
         }
     />

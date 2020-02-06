@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryItem from '../CategoryItem';
+import CategoryItem from '../../CategoryItem';
 import RFL_RF from './RFL_RF';
 import RFL_DF from './RFL_DF';
 

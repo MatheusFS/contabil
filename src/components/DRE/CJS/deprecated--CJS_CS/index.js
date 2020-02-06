@@ -1,9 +1,5 @@
 import React from 'react';
 
-import CategoryItem from '../../CategoryItem';
-
-// import './styles.css';
-
 function CJS_CS({ totals, operations, pb }){
 
     const name = "CJS_CS";

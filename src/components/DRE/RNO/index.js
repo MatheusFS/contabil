@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryItem from '../CategoryItem';
+import CategoryItem from '../../CategoryItem';
 import RNO_RNO from './RNO_RNO';
 import RNO_DNO from './RNO_DNO';
 
