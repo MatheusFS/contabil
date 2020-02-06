@@ -75,7 +75,7 @@ export const datePickerOptions = {
     onDraw: null,
     onOpen: null,
     parse: null,
-    setDefaultDate: true,
+    setDefaultDate: false,
     showClearBtn: false,
     showDaysInNextAndPreviousMonths: false,
     showMonthAfterYear: false,

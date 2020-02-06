@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryItem from '../CategoryItem';
+import CategoryItem from '../../CategoryItem';
 import DROB_ISV from './DROB_ISV';
 import DROB_DDSV from './DROB_DDSV';
 

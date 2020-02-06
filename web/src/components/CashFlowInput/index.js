@@ -10,26 +10,24 @@ import {
 import { datePickerOptions } from "../utils/options";
 import maskReal from "../../utils/maskReal";
 import unmaskReal from "../../utils/unmaskReal";
+import maskDate from '../../utils/maskDate';
 
 function CashFlowInput({ cash_flow, setCashFlow, price }){
 
-    const now = new Date(Date.now());
+    const now = new Date();
+    datePickerOptions.defaultDate = now;
 
     const reduceSum = (acc, curr) => acc+curr.value;
     const getCashFlowTotal = cash_flow => cash_flow.reduce(reduceSum, 0);
-
-    datePickerOptions.defaultDate = now;
 
     const handleInstallmentAdd = () => setCashFlow([...cash_flow, {
         date: now,
         value: price - getCashFlowTotal(cash_flow)
     }]);
 
-    // handleRemoveShareholder = idx => () => {
-    //     this.setState({
-    //         shareholders: this.state.shareholders.filter((s, sidx) => idx !== sidx)
-    //     });
-    // };
+    const handleRemoveInstallment = i => () => {
+        setCashFlow(cash_flow.filter((s, j) => i !== j));
+    };
 
     const handleInstallmentDateChange = i => e => {
         const newInstallments = cash_flow.map((installment, j) => {
@@ -55,12 +53,13 @@ function CashFlowInput({ cash_flow, setCashFlow, price }){
     <>
         <h5 className="center-align">Fluxo de caixa</h5>
         {cash_flow.map((installment, i) => (
-        <div key={i} className="grid-5-5 grid-gap-3">
+        <div key={i} className="grid-5-6-1 grid-gap-3">
             <DatePicker
                 icon={<Icon>event_available</Icon>}
                 label={`Data do pagamento #${i+1}`}
                 onChange={handleInstallmentDateChange(i)}
-                options={datePickerOptions} 
+                options={datePickerOptions}
+                value={maskDate(installment.date)}
             />
             <TextInput
                 icon="attach_money"
@@ -68,6 +67,15 @@ function CashFlowInput({ cash_flow, setCashFlow, price }){
                 value={maskReal(installment.value)}
                 onChange={handleInstallmentValueChange(i)}
             />
+            <Button 
+                small 
+                node="a" 
+                className="red" 
+                waves="light"
+                onClick={handleRemoveInstallment(i)}
+            >
+                X
+            </Button>
         </div>
         ))}
         <Button

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 
 import {
@@ -18,26 +18,17 @@ import styleWrongFields from '../utils/styleWrongFields';
 import './styles.css';
 import maskReal from '../../utils/maskReal';
 import unmaskReal from '../../utils/unmaskReal';
+import maskDate from '../../utils/maskDate';
 
-function AssetForm({ refresh }){
+function AssetForm({ year, month, refresh }){
 
-    const now = new Date(Date.now());
+    const navigation_date = new Date(year, month - 1, 15);
+    datePickerOptions.defaultDate = navigation_date;
+    useEffect(() => setPurchaseDate(navigation_date), [year, month])
 
-    const [name, setName] = useState('');
-    const [type, setType] = useState('D');
-    const [price, setPrice] = useState(0.0);
-    const [quantity, setQuantity] = useState(1);
-    const [purchase_date, setPurchaseDate] = useState(now);
-    const [cash_flow, setCashFlow] = useState([
-        {
-            date: now,
-            value: 0.0
-        }
-    ]);
-    const [use_start_date, setUseStartDate] = useState(now);
-    const [lifetime_in_months, setLifetime] = useState(12);
-    
     const [errors, setErrors] = useState({});
+    styleWrongFields(errors);
+
 
     async function handleAddAsset(){
 
@@ -60,13 +51,28 @@ function AssetForm({ refresh }){
         }else{
 
             refresh();
-            document.getElementById('new-asset').classList.remove('open');
+            setName('');
+            setType('D');
+            setPrice(0.0);
+            setQuantity(1);
+            setPurchaseDate(navigation_date);
+            setCashFlow([]);
+            setUseStartDate(navigation_date);
+            setLifetime(12);
+            // document.getElementById('new-asset').classList.remove('open');
         }
     }
 
-    styleWrongFields(errors);
-
-    datePickerOptions.defaultDate = now;
+    /*------------------ ASSET ------------------*/
+    const [name, setName] = useState('');
+    const [type, setType] = useState('D');
+    const [price, setPrice] = useState(0.0);
+    const [quantity, setQuantity] = useState(1);
+    const [purchase_date, setPurchaseDate] = useState(navigation_date);
+    const [cash_flow, setCashFlow] = useState([]);
+    const [use_start_date, setUseStartDate] = useState(navigation_date);
+    const [lifetime_in_months, setLifetime] = useState(12);
+    /*-------------------------------------------*/
 
     return (
     <MaterializeModal
@@ -82,7 +88,7 @@ function AssetForm({ refresh }){
         />}
         title="Adicionar ativo"
         body={
-            <form action="#">
+            <>
                 <TextInput
                     id="name"
                     icon="shopping_cart"
@@ -90,6 +96,20 @@ function AssetForm({ refresh }){
                     value={name}
                     onChange={e => setName(e.target.value)}
                     validate error='...'
+                />
+                <DatePicker
+                    id="purchase_date"
+                    icon={<Icon>event_available</Icon>}
+                    label="Data de compra"
+                    onChange={e => setPurchaseDate(e)}
+                    options={{
+                        ...datePickerOptions,
+                        onClose: e => {
+                            const field = document.getElementById('purchase_date');
+                            field.value = maskDate(field.value, 'M y');
+                        },
+                    }}
+                    value={maskDate(purchase_date, 'M y')}
                 />
                 <Select
                     id="type"
@@ -105,14 +125,6 @@ function AssetForm({ refresh }){
                     <option value="A">Amortização</option>
                     <option value="E">Exaustão</option>
                 </Select>
-                <DatePicker
-                    id="purchase_date"
-                    icon={<Icon>event_available</Icon>}
-                    label="Data de compra"
-                    onChange={e => setPurchaseDate(e)}
-                    options={datePickerOptions}
-                    validate error='...'
-                />
                 <div className="grid-5-5 grid-gap-3">
                     <TextInput
                         id="price"
@@ -126,8 +138,8 @@ function AssetForm({ refresh }){
                         id="quantity"
                         icon='filter_none'
                         label='Quantidade'
-                        value={quantity}
-                        onChange={e => setQuantity(e.target.value)}
+                        value={quantity.toString()}
+                        onChange={e => setQuantity(parseInt(e.target.value))}
                         validate error='...'
                     />
                 </div>
@@ -151,12 +163,12 @@ function AssetForm({ refresh }){
                         id="lifetime_in_months"
                         icon='refresh'
                         label='Vida útil (Meses)'
-                        value={lifetime_in_months}
-                        onChange={e => setLifetime(e.target.value)}
+                        value={lifetime_in_months.toString()}
+                        onChange={e => setLifetime(parseInt(e.target.value))}
                         validate error='...'
                     />
                 </div>
-            </form>
+            </>
         }
         action={handleAddAsset}
     />

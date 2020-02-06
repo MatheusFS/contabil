@@ -21,23 +21,23 @@ function App() {
   const [year, setYear] = useState(now.getFullYear());
   const [operations, setOperations] = useState([]);
   const [totals, setTotals] = useState([]);
-  const [refresh, setRefresh] = useState(false);
 
-  useEffect(() => {
-    async function getOperationsByYearMonth(){
-  
-      const response = await api.get(`operations/ym/${year}/${month}`);
-      setOperations(response.data);
-    }
-    async function getTotalsByYearMonth(){
-  
-      const response = await api.get(`totals/ym/${year}/${month}`);
-      setTotals(response.data);
-    }
+  async function getOperationsByYearMonth(){
+
+    const response = await api.get(`operations/ym/${year}/${month}`);
+    setOperations(response.data);
+  }
+  async function getTotalsByYearMonth(){
+
+    const response = await api.get(`totals/ym/${year}/${month}`);
+    setTotals(response.data);
+  }
+  function refresh(){
     getOperationsByYearMonth();
     getTotalsByYearMonth();
-    setRefresh(false);
-  }, [year, month, refresh]);
+  }
+
+  useEffect(refresh, [year, month]);
 
   return (      
     <div id="app">
@@ -47,15 +47,14 @@ function App() {
           month={month} 
           cYear={setYear} 
           cMonth={setMonth}
-          refresh={() => setRefresh(true)}
         />
         <ul><RLE totals={totals} pb={totals["ROB"]}/></ul>
       </header>
       <main>
         <DRE operations={operations} totals={totals}/>
       </main>
-      <OperationForm year={year} month={month} refresh={() => setRefresh(true)}/>
-      <AssetForm year={year} month={month} refresh={() => setRefresh(true)}/>
+      <OperationForm year={year} month={month} refresh={refresh}/>
+      <AssetForm year={year} month={month} refresh={refresh}/>
     </div>
   );
 }

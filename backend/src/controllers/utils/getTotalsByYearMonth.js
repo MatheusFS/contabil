@@ -1,4 +1,5 @@
 const getOperationsByYearMonth = require('./getOperationsByYearMonth');
+const getAssetsPurchaseByYearMonth = require('./getAssetsPurchaseByYearMonth');
 const getAssetsDepreciationByYearMonth = require('./getAssetsDepreciationByYearMonth');
 
 module.exports = async function getTotalsByYearMonth(year, month){
@@ -6,13 +7,11 @@ module.exports = async function getTotalsByYearMonth(year, month){
     const sub = (a, b) => (a?a:0) - (b?b:0);
 
     const operations = await getOperationsByYearMonth(year, month);
-
+    const purchases = await getAssetsPurchaseByYearMonth(year, month);
     const depreciations = await getAssetsDepreciationByYearMonth(year, month);
 
-    if(depreciations){
-
-        operations.push(...depreciations);
-    }
+    if(purchases) operations.push(...purchases);
+    if(depreciations) operations.push(...depreciations);
 
     const totals = {};
 

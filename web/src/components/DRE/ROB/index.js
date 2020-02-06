@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryItem from '../CategoryItem';
+import CategoryItem from '../../CategoryItem';
 import ROB_RBV from './ROB_RBV';
 
 // import './styles.css';

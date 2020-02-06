@@ -299,6 +299,10 @@ input.underline {
 
 .grid-1-10-1{grid-template-columns: calc(100% / 12 * 1 - 0.5rem) calc(100% / 12 * 10 - 0.5rem) calc(100% / 12 * 1 - 0.5rem)}
 .grid-2-8-2{grid-template-columns: calc(100% / 12 * 2 - 0.5rem) calc(100% / 12 * 8 - 0.5rem) calc(100% / 12 * 2 - 0.5rem)}
+.grid-3-6-3{grid-template-columns: calc(100% / 12 * 3 - 0.5rem) calc(100% / 12 * 6 - 0.5rem) calc(100% / 12 * 3 - 0.5rem)}
+.grid-4-4-4{grid-template-columns: calc(100% / 12 * 4 - 0.5rem) calc(100% / 12 * 4 - 0.5rem) calc(100% / 12 * 4 - 0.5rem)}
+.grid-5-5-2{grid-template-columns: calc(100% / 12 * 5 - 0.5rem) calc(100% / 12 * 5 - 0.5rem) calc(100% / 12 * 2 - 0.5rem)}
+.grid-5-6-1{grid-template-columns: calc(100% / 12 * 5 - 0.5rem) calc(100% / 12 * 6 - 0.5rem) calc(100% / 12 * 1 - 0.5rem)}
 
 .grid-gap-1{grid-gap: 0.5rem;width: calc(100% - 0.5rem);}
 .grid-gap-2{grid-gap: 1rem;width: calc(100% - 1rem);}

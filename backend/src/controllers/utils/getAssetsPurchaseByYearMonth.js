@@ -1,11 +1,27 @@
 const Asset = require('../../models/Asset');
-const normalizeYearMonthDate = require("../../utils/normalizeYearMonthDate");
+const getMonthStartEndDates = require('../../utils/getMonthStartEndDates');
 
 module.exports = async function getAssetsPurchaseByYearMonth(year, month){
 
-    const purchase_date = normalizeYearMonthDate(year, month);
+    const { start, end } = getMonthStartEndDates(year, month);
 
-    const assets = await Asset.find({ purchase_date });
+    const assets = await Asset.find({
+        purchase_date: { $gte: start, $lte: end, }
+    });
 
-    return assets;
+    const operations = assets.map(asset => {
+        
+        const { _id, name, cash_flow, price, quantity, purchase_date } = asset;
+
+        return {    
+            _id,
+            name,
+            cash_flow,
+            category: `DO_DA_DGA`,
+            value: price * quantity,
+            competence_date: purchase_date
+        }
+    });
+
+    return operations;
 }

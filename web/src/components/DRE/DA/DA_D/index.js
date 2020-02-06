@@ -1,7 +1,5 @@
 import React from 'react';
 
-import CategoryItem from '../../CategoryItem';
-
 function DA_D({ totals, operations, pb }){
 
     const name = "DA_D";
