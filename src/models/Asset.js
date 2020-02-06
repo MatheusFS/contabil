@@ -13,7 +13,7 @@ const AssetSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: [true, 'Qual o preço do ativo em R$?'],
-        min: [1.0, 'O preço mínimo do ativo é R$1,00']
+        min: [.1, 'O preço mínimo de ativo é R$0,10']
     },
     quantity: {
         type: Number,

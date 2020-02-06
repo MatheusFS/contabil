@@ -3,6 +3,7 @@ const { Router } = require('express');
 const AssetController = require('./controllers/AssetController');
 const OperationController = require('./controllers/OperationController');
 const TotalsController = require('./controllers/TotalsController');
+const CashFlowController = require('./controllers/CashFlowController');
  
 const routes = Router();
 
@@ -22,9 +23,12 @@ routes.get('/operations/m/:month', OperationController.byMonth);
 routes.get('/operations/ym/:year/:month', OperationController.byYearMonth);
 routes.get('/operations/d/:start/:end', OperationController.byDates);
 routes.post('/operations', OperationController.store);
+routes.patch('/operations', OperationController.update);
 routes.delete('/operation/:_id', OperationController.destroy);
 
 routes.get('/assets', AssetController.index);
 routes.post('/assets', AssetController.store);
+
+routes.get('/cash_flow', CashFlowController.byMonth);
 
 module.exports = routes;

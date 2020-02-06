@@ -19,43 +19,65 @@ module.exports = {
 
     async store(req, res){
 
-        const { name, category, value, competence_date, cash_flow_date }  = req.body;
-  
-        operation = await Operation.create({
+        const {
             name,
             category,
             value,
             competence_date,
-            cash_flow_date,
+            cash_flow,
+        }  = req.body;
+  
+        const operation = await Operation.create({
+            name,
+            category,
+            value,
+            competence_date,
+            cash_flow,
         });
     
+        return res.json(operation);
+    },
+
+    async update(req, res){
+
+        const {
+            _id,
+            name,
+            category,
+            value,
+            competence_date,
+            cash_flow,
+        } = req.params;
+
+        const operation = await Operation.updateOne({ _id }, {
+            name,
+            category,
+            value,
+            competence_date,
+            cash_flow,
+        });
+
         return res.json(operation);
     },
 
     async destroy(req, res){
 
         const { _id } = req.params;
-
         const response = await Operation.deleteOne({ _id });
-
         return res.json(response);
     },
 
     async byCategory(req, res){
 
         const { category } = req.params;
-
         const operations = await getOperationsByCategory(category);
-
         return res.json(operations);
     },
 
     async byMonth(req, res){
 
         const { month } = req.params;
-
         const operations = await getOperationsByMonth(month);
-
         return res.json(operations);
     },
 
@@ -76,9 +98,7 @@ module.exports = {
     async byDates(req, res){
 
         const { start, end } = req.params;
-        
         const operations = await getOperationsByDates(start, end);
-
         res.json(operations);
     }
 }

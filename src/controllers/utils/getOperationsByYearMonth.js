@@ -1,14 +1,12 @@
 const Operation = require('../../models/Operation');
+const getMonthStartEndDates = require('../../utils/getMonthStartEndDates');
 
 module.exports = async function getOperationsByYearMonth(year, month){
 
-    const padMonth = `000${month}`.slice(-2);
+    const { start, end } = getMonthStartEndDates(year, month);
 
     const operations = await Operation.find({
-        competence_date: {
-            $gte: new Date(`${year}-${padMonth}-01`),
-            $lte: new Date(`${year}-${padMonth}-31`),
-        }
+        competence_date: { $gte: start, $lte: end, }
     });
 
     return operations;
