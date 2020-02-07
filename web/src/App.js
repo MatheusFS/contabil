@@ -12,6 +12,7 @@ import RLE from './components/DRE/RLE';
 import DateNavbar from './components/DateNavbar';
 import OperationForm from './components/OperationForm';
 import AssetForm from './components/AssetForm';
+import CashFlow from './components/CashFlow';
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
       </header>
       <main>
         <DRE operations={operations} totals={totals}/>
+        <CashFlow/>
       </main>
       <OperationForm year={year} month={month} refresh={refresh}/>
       <AssetForm year={year} month={month} refresh={refresh}/>
