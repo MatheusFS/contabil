@@ -1,6 +1,6 @@
 const getDepreciationStartEndDates = require('./getDepreciationStartEndDates');
-const isBetweenDates = require('./isBetweenDates');
-const dateDiffInMonths = require('./dateDiffInMonths');
+const isBetweenDates = require('../../utils/isBetweenDates');
+const dateDiffInMonths = require('../../utils/dateDiffInMonths');
 
 module.exports = function mapAssetsDepreciationToOperations(assets, search_date){
 
@@ -21,7 +21,7 @@ module.exports = function mapAssetsDepreciationToOperations(assets, search_date)
                 _id,
                 name: `${name} (${n}/${lifetime_in_months})`,
                 category: `DA_${type}`,
-                value: (price / lifetime_in_months) * quantity,
+                value: -(price / lifetime_in_months) * quantity,
                 competence_date: search_date
             }
         }

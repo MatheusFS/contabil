@@ -1,4 +1,4 @@
-const addMonths = require('./addMonths');
+const addMonths = require('../../utils/addMonths');
 
 module.exports = function getDepreciationStartEndDates(use_start_date, lifetime_in_months){
 

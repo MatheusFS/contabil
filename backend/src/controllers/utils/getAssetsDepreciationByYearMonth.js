@@ -1,6 +1,6 @@
 const Asset = require('../../models/Asset');
 const normalizeYearMonthDate = require("../../utils/normalizeYearMonthDate");
-const mapAssetsToDepreciationOperations = require("../../utils/mapAssetsToDepreciationOperations");
+const mapAssetsToDepreciationOperations = require("./mapAssetsToDepreciationOperations");
 
 module.exports = async function getAssetsDepreciationByYearMonth(year, month){
 

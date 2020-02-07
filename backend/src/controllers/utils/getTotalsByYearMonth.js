@@ -3,6 +3,7 @@ const getOperationsPurchasesDepreciationsByYearMonth = require('./getOperationsP
 module.exports = async function getTotalsByYearMonth(year, month){
 
     const sub = (a, b) => (a?a:0) - (b?b:0);
+    const sum = (a, b) => (a?a:0) + (b?b:0);
 
     const operations = await getOperationsPurchasesDepreciationsByYearMonth(year, month);
 
@@ -21,13 +22,13 @@ module.exports = async function getTotalsByYearMonth(year, month){
 
     });
 
-    totals['ROL'] = sub(totals['ROB'], totals['DROB']);
-    totals['LOB'] = sub(totals['ROL'], totals['CO']);
-    totals['LAJIRDA'] = sub(totals['LOB'], totals['DO']);
-    totals['LAJIR'] = sub(totals['LAJIRDA'], totals['DA']);
-    totals['LAIR'] = sub(totals['LAJIR'], totals['RFL']);
-    totals['LOL'] = sub(totals['LAIR'], totals['CJS']);
-    totals['RLE'] = sub(sub(totals['LOL'], totals['RNO']), totals['AED']);
+    totals['ROL'] = sum(totals['ROB'], totals['DROB']);
+    totals['LOB'] = sum(totals['ROL'], totals['CO']);
+    totals['LAJIRDA'] = sum(totals['LOB'], totals['DO']);
+    totals['LAJIR'] = sum(totals['LAJIRDA'], totals['DA']);
+    totals['LAIR'] = sum(totals['LAJIR'], totals['RFL']);
+    totals['LOL'] = sum(totals['LAIR'], totals['CJS']);
+    totals['RLE'] = sum(sum(totals['LOL'], totals['RNO']), totals['AED']);
 
     return totals;
 }

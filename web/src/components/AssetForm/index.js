@@ -22,13 +22,12 @@ import maskDate from '../../utils/maskDate';
 
 function AssetForm({ year, month, refresh }){
 
-    const navigation_date = new Date(year, month - 1, 15);
+    const [navigation_date] = useState(new Date(year, month - 1, 15));
+    useEffect(() => setPurchaseDate(navigation_date), [navigation_date])
     datePickerOptions.defaultDate = navigation_date;
-    useEffect(() => setPurchaseDate(navigation_date), [year, month])
 
     const [errors, setErrors] = useState({});
     styleWrongFields(errors);
-
 
     async function handleAddAsset(){
 

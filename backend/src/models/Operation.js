@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Installment = require('./utils/Installment');
 
 const OperationSchema = new mongoose.Schema({
+    flow_type: {
+        type: String,
+        enum: ['in', 'out'],
+        required: [true, 'A operação representa uma entrada ou saída?']
+    },
     name: {
         type: String,
         required: [true, 'Qual o nome da operação']

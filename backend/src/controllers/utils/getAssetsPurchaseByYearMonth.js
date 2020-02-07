@@ -18,7 +18,7 @@ module.exports = async function getAssetsPurchaseByYearMonth(year, month){
             name,
             cash_flow,
             category: `DO_DA_DGA`,
-            value: price * quantity,
+            value: -price * quantity,
             competence_date: purchase_date
         }
     });

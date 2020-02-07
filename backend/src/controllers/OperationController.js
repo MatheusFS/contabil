@@ -5,6 +5,7 @@ const getOperationsByDates = require('./utils/getOperationsByDates');
 const getOperationsByYearMonth = require('./utils/getOperationsByYearMonth');
 const getAssetsDepreciationByYearMonth = require('./utils/getAssetsDepreciationByYearMonth');
 const getAssetsPurchaseByYearMonth = require('./utils/getAssetsPurchaseByYearMonth');
+const to = require('../utils/to');
 
 // CONTROLLER FUNCTIONS
 // index, show, store, update, destroy
@@ -20,28 +21,31 @@ module.exports = {
     async store(req, res){
 
         const {
+            flow_type,
             name,
             category,
             value,
             competence_date,
             cash_flow,
         }  = req.body;
-  
-        const operation = await Operation.create({
+
+        const [error, operation] = await to(Operation.create({
+            flow_type,
             name,
             category,
             value,
             competence_date,
             cash_flow,
-        });
+        }));
     
-        return res.json(operation);
+        return res.json({ error, operation });
     },
 
     async update(req, res){
 
         const {
             _id,
+            flow_type,
             name,
             category,
             value,
@@ -50,6 +54,7 @@ module.exports = {
         } = req.params;
 
         const operation = await Operation.updateOne({ _id }, {
+            flow_type,
             name,
             category,
             value,
