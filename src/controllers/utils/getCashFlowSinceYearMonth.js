@@ -5,7 +5,7 @@ module.exports = async function getCashFlowSinceYearMonth(year, month){
     const since = new Date(year, month);
     const now = new Date();
 
-    const ops = [];
+    let ops = [];
 
     for (since; since <= now; since.setMonth(since.getMonth() + 1)) {
 
@@ -20,8 +20,8 @@ module.exports = async function getCashFlowSinceYearMonth(year, month){
         ops.push(...operations);
     }
 
-    const ops_cash_flow = ops.map(operation => {
-
+    ops = ops.map(operation => {
+        console.log(operation);
         return operation.cash_flow.map(installment => {
             
             return {
@@ -33,7 +33,12 @@ module.exports = async function getCashFlowSinceYearMonth(year, month){
         });
     }).flat();
 
-    ops_cash_flow.sort((a,b) => new Date(b.date) - new Date(a.date));
+    ops.sort((a,b) => new Date(b.date) - new Date(a.date));
 
-    return ops_cash_flow;
+    const actual = ops.reduce((prev, curr) => prev + curr.value, 0);
+
+    return {
+        actual,
+        ops
+    };
 }
