@@ -90,7 +90,7 @@ function CategoryItem({
                     <Col s={1}>{maskReal(operation.value)}</Col>
                     <Col s={1}>{floatToPercentage(operation.value/pb)}</Col>
                     <Col s={2} className="grid-5-5 grid-gap-2">
-                        <Button className="blue" small waves="light" onClick={e => destroyOperation(operation._id)}>
+                        <Button className="blue" small waves="light" onClick={e => console.log(e)}>
                             <Icon>edit</Icon>
                         </Button>
                         <Button className="red" small waves="light" onClick={e => destroyOperation(operation._id)}>

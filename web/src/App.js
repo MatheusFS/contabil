@@ -53,7 +53,7 @@ function App() {
       </header>
       <main>
         <DRE operations={operations} totals={totals}/>
-        <CashFlow/>
+        {/* <CashFlow/> */}
       </main>
       <OperationForm year={year} month={month} refresh={refresh}/>
       <AssetForm year={year} month={month} refresh={refresh}/>

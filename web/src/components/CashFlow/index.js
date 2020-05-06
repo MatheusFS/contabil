@@ -8,7 +8,7 @@ import api from '../../services/api';
 
 function CashFlow({  }){
 
-    const [cash_flow, setCashFlow] = useState([]);
+    const [cash_flow, setCashFlow] = useState({actual:0.0, ops:[]});
 
     async function getCashFlowSinceYearMonth(year, month){
 
@@ -21,7 +21,7 @@ function CashFlow({  }){
     return (
     <>
         <ul>
-        {cash_flow.map(installment => (
+        {cash_flow.ops.map(installment => (
             <li>
                 <Row>
                     <Col s={2}>{maskDate(installment.date)}</Col>
