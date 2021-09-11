@@ -21,7 +21,7 @@ function CategoryItem({
 }){
 
     const ops = operations
-    ? operations.filter(operation => operation.category === name)
+    ? operations?.filter(operation => operation.category === name)
     : [];
 
     function toggle(e, name){
