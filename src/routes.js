@@ -29,6 +29,6 @@ routes.delete('/operation/:_id', OperationController.destroy);
 routes.get('/assets', AssetController.index);
 routes.post('/assets', AssetController.store);
 
-routes.get('/cash_flow', CashFlowController.byMonth);
+routes.get('/cash_flow/s/ym/:year/:month', CashFlowController.sinceYearMonth);
 
 module.exports = routes;

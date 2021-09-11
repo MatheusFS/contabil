@@ -22,7 +22,8 @@ module.exports = function mapAssetsDepreciationToOperations(assets, search_date)
                 name: `${name} (${n}/${lifetime_in_months})`,
                 category: `DA_${type}`,
                 value: (price / lifetime_in_months) * quantity,
-                competence_date: search_date
+                competence_date: search_date,
+                // cash_flow: []
             }
         }
     }).filter(asset => asset != null);
