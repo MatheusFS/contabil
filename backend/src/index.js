@@ -6,7 +6,7 @@ const routes = require('./routes');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/test?retryWrites=true&w=majority',{
+mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
